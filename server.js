@@ -6,8 +6,8 @@ export function startMirage() {
       this.namespace = 'api';
 
       let songs = [
-        { id: 1, title: 'Song 1', artist: 'Artist 1', album: 'Album 1', year: 2020 },
-        { id: 2, title: 'Song 2', artist: 'Artist 2', album: 'Album 2', year: 2021 },
+        { id: 1, title: 'Song 1', artist: 'Artist 1', album: 'Album 1', year: 2020, genre: 'Pop', duration: '3:45' },
+        { id: 2, title: 'Song 2', artist: 'Artist 2', album: 'Album 2', year: 2021, genre: 'Rock', duration: '4:20' },
       ];
 
       this.get('/songs', (schema, request) => {
@@ -29,7 +29,7 @@ export function startMirage() {
 
       this.post('/songs', (schema, request) => {
         const attrs = JSON.parse(request.requestBody);
-        const newSong = { id: songs.length + 1, ...attrs };
+        const newSong = { id: songs.length + 1, ...attrs, genre: attrs.genre || 'Unknown', duration: attrs.duration || '0:00' };
         songs.push(newSong);
         return newSong;
       });
