@@ -1,19 +1,33 @@
 import React, { lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled';
-import SongList from './components/SongList';
 import Pagination from './components/Pagination';
 import { theme } from './styles/theme';
 import { fetchSongsStart } from './store/songs/songsSlice';
-
-const SongForm = lazy(() => import('./components/SongForm'));
+import SongManagementPage from './components/Song';
 
 const Container = styled.div`
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: ${theme.spacing.lg};
-  background: white;
+  background: ${theme.colors.background};
   min-height: 100vh;
+  font-family: ${theme.typography.fontFamily};
+
+  @media (max-width: ${theme.breakpoints.sm}) {
+    padding: ${theme.spacing.md};
+  }
+`;
+
+const Header = styled.h1`
+  color: ${theme.colors.primary};
+  text-align: center;
+  margin-bottom: ${theme.spacing.xl};
+  font-size: ${theme.typography.fontSize.xl};
+
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: ${theme.typography.fontSize.lg};
+  }
 `;
 
 function App() {
@@ -26,11 +40,7 @@ function App() {
 
   return (
     <Container>
-      <h1>Song Management</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        <SongForm />
-      </Suspense>
-      <SongList />
+      <SongManagementPage />
       <Pagination />
     </Container>
   );
