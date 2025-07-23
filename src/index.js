@@ -7,9 +7,8 @@ import App from './App';
 import { startMirage } from '../server';
 import { theme } from './styles/theme';
 
-
 startMirage();
-
+console.log('MirageJS server started');
 const root = createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
