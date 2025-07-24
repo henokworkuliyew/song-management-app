@@ -37,14 +37,16 @@ module.exports = {
       template: './public/index.html',
     }),
     new DefinePlugin({
-      'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL || '/api'), // Use .env variable or fallback to relative path
+      'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL || '/api'), 
     }),
   ],
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 8080,
+    port: process.env.PORT || 8080, 
     hot: true,
-    historyApiFallback: true, 
+    historyApiFallback: true,
+    host: '0.0.0.0', 
+    allowedHosts: 'all', 
   },
   optimization: {
     splitChunks: {
