@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Pagination from './components/Pagination';
 import { theme } from './styles/theme';
 import { fetchSongsStart } from './store/songs/songsSlice';
-import SongManagementPage from './components/Song';
+import SongManagementPage from './components/SongManagment';
 
 const Container = styled.div`
   max-width: 1200px;
